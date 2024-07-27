@@ -24,7 +24,7 @@ Este decorador le dice a FastAPI que la funcion que esta por debajo corresponde 
 @app.get("/A")
 def cantidad_filmaciones_mes( Mes: str ):
     '''
-    Se ingresa un mes en idioma Español y devuelve la cantidad de películas que fueron estrenadas en ese mes.
+    Recibe un mes en idioma Español y devuelve la cantidad de películas que fueron estrenadas en ese mes.
 
     Parametros
     ----------
@@ -61,7 +61,7 @@ def cantidad_filmaciones_mes( Mes: str ):
 @app.get("/B")
 def cantidad_filmaciones_dia( Dia: str ):
     '''
-    Se ingresa un dia en idioma Español y devuelve la cantidad de películas que fueron estrenadas en ese dia.
+    Recibe un dia en idioma Español y devuelve la cantidad de películas que fueron estrenadas en ese dia.
 
     Parametros
     ----------
@@ -78,93 +78,94 @@ def cantidad_filmaciones_dia( Dia: str ):
     return None
 
 @app.get("/C")
-def score_titulo( titulo_de_la_filmación ):
+def score_titulo( titulo_de_la_filmacion: str ):
     '''
-    Calcula cantidad de items y porcentaje de contenido Free por año según empresa desarrolladora
+    Recibe el título de una filmación y devuelve el título, año de estreno y score.
 
     Parametros
     ----------
-    desarrollador : str
+    titulo_de_la_filmación : str
 
     Retorno
     -------
-    Año, Cantidad de items, porcentaje contenido free
+    Titulo, año de estreno y popularidad de cada pelicula que coincide con el parametro ingresado
 
     '''
 
     # Filtrar por el titulo buscado
-    titulo_df = df_score_votos[df_score_votos['title'].str.contains(titulo_de_la_filmación, case=False, na=False)]
+    titulo_df = df_score_votos[df_score_votos['title'].str.contains(r'\b' + re.escape(titulo_de_la_filmación) + r'\b', case=False, na=False)]
 
     if titulo_df.empty:
-        return f"No se encuentran registros que coincidan con '{titulo_de_la_filmación}'."
+        return f"No se encuentran registros que  coincidan con '{titulo_de_la_filmación}'."
 
-    #Seleccionamos solo las columnas con los datos a retornar
-    resultado = titulo_df[['title','release_year','popularity']]
-    resultado.rename(columns={
-        'title': 'Titulo',
-        'release_year': 'Año de estreno',
-        'popularity': 'Popularidad'
-        }, inplace=True)
+    # Almacenar resultados en una lista
+    resultados = []
 
-    return {
-        f"Peliculas que coinciden con {titulo_de_la_filmación}":
-        {resultado.to_json(orient='records', lines=True)}
-    }
+    # Recorrer los titulos encontrados
+    for index, row in titulo_df.iterrows():
+        # Convertir la popularidad a float antes de redondear
+        popularidad = float(row['popularity']) if row['popularity'] else 0.0  # Manejar posibles valores nulos
+        resultados.append({
+            'Titulo': row['title'],
+            'Año de estreno': row['release_year'],
+            'Popularidad': round(popularidad, 2)
+        })
+
+    return resultados
 
 @app.get("/D")
-def votos_titulo( titulo_de_la_filmación ):
+def votos_titulo( titulo_de_la_filmacion: str ):
     '''
-    Calcula cantidad de items y porcentaje de contenido Free por año según empresa desarrolladora
+    Recibe el título de una filmación y devuelve el título, año de estreno, cantidad de votos
+    y el valor promedio de las votaciones si la misma cuenta con al menos 2000 valoraciones.
+    Caso contrario, devuelve un mensaje avisando que no cumple esta condición y no se devuelve ningun valor.
 
     Parametros
     ----------
-    desarrollador : str
+    titulo_de_la_filmacion : str
 
     Retorno
     -------
-    Año, Cantidad de items, porcentaje contenido free
+    Título, año de estreno, cantidad de votos y el valor promedio de las votaciones
 
     '''
 
     # Filtrar por el titulo buscado
-    titulo_df = df_score_votos[df_score_votos['title'].str.contains(titulo_de_la_filmación, case=False, na=False)]
+    titulo_df = df_score_votos[df_score_votos['title'].str.contains(r'\b' + re.escape(titulo_de_la_filmación) + r'\b', case=False, na=False)]
 
     if titulo_df.empty:
-        return f"No se encuentran registros que coincidan con '{titulo_de_la_filmación}'."
-
-    #Seleccionamos solo las columnas con los datos a retornar
-    resultado = titulo_df[['title','release_year','vote_count','vote_average']]
+        return f"No se encuentran registros que  coincidan con '{titulo_de_la_filmación}'."
 
     #Filtrar los registros que tengan más de 2000 votos
-    filtrado = resultado[resultado['vote_count'] >= 2000]
+    filtrado = titulo_df[titulo_df['vote_count'] >= 2000]
 
-    filtrado.rename(columns={
-        'title': 'Titulo',
-        'release_year': 'Año de estreno',
-        'vote_count': 'Cantidad de valoraciones',
-        'vote_average': 'Puntaje promedio'
-        }, inplace=True)
+    # Almacenar resultados en una lista
+    resultados = []
 
-    if filtrado.empty:
-        return "El título ingresado no cumple con el mínimo de votos necesarios para mostrar la información"
+    # Recorrer los titulos encontrados
+    for index, row in filtrado.iterrows():
+        resultados.append({
+            'Titulo': row['title'],
+            'Año de estreno': row['release_year'],
+            'Cantidad de valoraciones': row['vote_count'],
+            'Puntaje promedio': row['vote_average']
+        })
 
-    return {
-        f"Peliculas que coinciden con {titulo_de_la_filmación}":
-        {filtrado.to_json(orient='records', lines=True)}
-    }
+    return resultados
 
 @app.get("/E")
-def get_actor( nombre_actor ):
+def get_actor( nombre_actor: str ):
     '''
-    Calcula cantidad de items y porcentaje de contenido Free por año según empresa desarrolladora
+    Recibe el nombre de un actor y devuelve el nombre del actor, el éxito medido a través del retorno, 
+    la cantidad de películas que en las que ha participado y el promedio de retorno.
 
     Parametros
     ----------
-    desarrollador : str
+    nombre_actor : str
 
     Retorno
     -------
-    Año, Cantidad de items, porcentaje contenido free
+    Nombre del actor, cantidad de peliculas, retorno y promedio de retorno por pelicula
 
     '''
 
@@ -197,17 +198,19 @@ def get_actor( nombre_actor ):
     return list(resultados.values())
 
 @app.get("/F")
-def get_director( nombre_director ):
+def get_director( nombre_director: str ):
     '''
-    Calcula cantidad de items y porcentaje de contenido Free por año según empresa desarrolladora
+    Recibe el nombre de un director y devuelve el éxito del mismo medido a través del retorno.
+    Además, crea una lista con el nombre de cada película dirigida por el mismo,
+    con la fecha de lanzamiento, retorno individual, costo y ganancia de la misma.
 
     Parametros
     ----------
-    desarrollador : str
+    nombre_director : str
 
     Retorno
     -------
-    Año, Cantidad de items, porcentaje contenido free
+    Nombre del director, retorno, lista de peliculas dirigidas por el mismo
 
     '''
 
