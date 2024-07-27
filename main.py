@@ -93,10 +93,10 @@ def score_titulo( titulo_de_la_filmacion: str ):
     '''
 
     # Filtrar por el titulo buscado
-    titulo_df = df_score_votos[df_score_votos['title'].str.contains(r'\b' + re.escape(titulo_de_la_filmación) + r'\b', case=False, na=False)]
+    titulo_df = df_score_votos[df_score_votos['title'].str.contains(r'\b' + re.escape(titulo_de_la_filmacion) + r'\b', case=False, na=False)]
 
     if titulo_df.empty:
-        return f"No se encuentran registros que  coincidan con '{titulo_de_la_filmación}'."
+        return f"No se encuentran registros que  coincidan con '{titulo_de_la_filmacion}'."
 
     # Almacenar resultados en una lista
     resultados = []
@@ -131,10 +131,10 @@ def votos_titulo( titulo_de_la_filmacion: str ):
     '''
 
     # Filtrar por el titulo buscado
-    titulo_df = df_score_votos[df_score_votos['title'].str.contains(r'\b' + re.escape(titulo_de_la_filmación) + r'\b', case=False, na=False)]
+    titulo_df = df_score_votos[df_score_votos['title'].str.contains(r'\b' + re.escape(titulo_de_la_filmacion) + r'\b', case=False, na=False)]
 
     if titulo_df.empty:
-        return f"No se encuentran registros que  coincidan con '{titulo_de_la_filmación}'."
+        return f"No se encuentran registros que  coincidan con '{titulo_de_la_filmacion}'."
 
     #Filtrar los registros que tengan más de 2000 votos
     filtrado = titulo_df[titulo_df['vote_count'] >= 2000]
