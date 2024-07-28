@@ -35,28 +35,23 @@ def cantidad_filmaciones_mes( Mes: str ):
     Cantidad de películas estrenadas en el mes consultado
 
     '''
+    
     # Convertir 'release_date' a tipo datetime
     df_fecha_estreno['release_date'] = pd.to_datetime(df_fecha_estreno['release_date'], format='%Y-%m-%d', errors='coerce')
 
-    #Crea una lista con los meses en español
-    meses = ['','Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio','Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
-    
-    # Si mes es un número, convertir directamente a entero
-    if Mes.isdigit():
-        numero_mes = int(Mes)
-        if numero_mes < 1 or numero_mes > 12:
-            return "El número de mes debe estar entre 1 y 12"
-    else:
-        # Si es un string, convertir el nombre del mes a su número correspondiente
-        try:
-            numero_mes = list(meses).index(Mes.capitalize())
-        except ValueError:
-            return f"El mes '{Mes}' no está en la lista de meses válidos"
-    
-    # Contar cuántos registros contienen el mes especificado
-    resultado = df_fecha_estreno[df_fecha_estreno['release_date'].dt.month == numero_mes].shape[0]
+    # Creamos una diccionario con los nombres de los meses en ingles ya que se extraen del df en este idioma
+    meses = {'enero': 'January', 'febrero': 'February', 'marzo': 'March', 'abril': 'April', 'mayo': 'May', 
+            'junio': 'June', 'julio': 'July', 'agosto': 'August', 'septiembre': 'September', 'setiembre': 'September', 
+            'octubre': 'October', 'noviembre': 'November', 'diciembre': 'December'}
+    try:
+        mes_ingles = meses[Mes.lower()]
+    except KeyError:
+        return f"El mes '{Mes}' no es un día válido. Verifica la ortografia."
 
-    return f"{resultado} películas fueron estrenadas en el mes {numero_mes}"
+    # Filtrar y contar
+    cantidad_peliculas = df_fecha_estreno[df_fecha_estreno['release_date'].dt.month_name() == mes_ingles].shape[0]
+
+    return f"{cantidad_peliculas} películas fueron estrenadas en el mes '{Mes}'"
 
 @app.get("/B")
 def cantidad_filmaciones_dia( Dia: str ):
@@ -73,9 +68,21 @@ def cantidad_filmaciones_dia( Dia: str ):
 
     '''
 
-    
+    # Convertir 'release_date' a tipo datetime
+    df_fecha_estreno['release_date'] = pd.to_datetime(df_fecha_estreno['release_date'], format='%Y-%m-%d', errors='coerce')
 
-    return None
+    # Creamos una diccionario con los nombres de los dias en ingles ya que se extraen del df en este idioma
+    dias = {'lunes': 'Monday', 'martes': 'Tuesday', 'miercoles': 'Wednesday', 'jueves': 'Thursday',
+            'viernes': 'Friday', 'sabado': 'Saturday', 'domingo': 'Sunday'}
+    try:
+        dia_ingles = dias[Dia.lower()]
+    except KeyError:
+        return f"El día '{Dia}' no es un día válido. Verifica la ortografia."
+
+    # Filtrar y contar
+    cantidad_peliculas = df_fecha_estreno[df_fecha_estreno['release_date'].dt.day_name() == dia_ingles].shape[0]
+
+    return f"{cantidad_peliculas} películas fueron estrenadas un día {Dia}"
 
 @app.get("/C")
 def score_titulo( titulo_de_la_filmacion: str ):
