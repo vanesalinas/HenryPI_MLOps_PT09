@@ -1,5 +1,5 @@
 # <h1 align=center> **Machine Learning Operations (MLOps)** </h1>
-<p align="center"><img src=https://d31uz8lwfmyn8g.cloudfront.net/Assets/logo-henry-white-lg.png></p>
+<p align="center"><img src='/src/img/portada.png'></p>
 
 ## <p align="center">PROYECTO INDIVIDUAL Nº1<br/>SOY HENRY DATA-PT09</p>
 
@@ -23,6 +23,12 @@ Los datos se pondrán a disposición de los usuarios para ser consumidos a trav�
 ***Este proyecto fue desarrollado durante la etapa de Labs del Bootcamp de Henry.*** 
 
 ### Herramientas utilizadas
+
+<p align="center"><img src='./src/img/imagen1 - copia.png'></p>
+<p align="center"><img src='./src/img/imagen2 - copia.png'></p>
+<p align="center"><img src='./src/img/imagen3 - copia.png'></p>
+<p align="center"><img src='./src/img/imagen4 - copia.png'></p>
+<p align="center"><img src='./src/img/imagen5 - copia.png'></p>
 
 ### Transformaciones
 
@@ -67,6 +73,18 @@ Esta API será consumida en la web a través de un service web de Render. Puedes
 Resumen del funcionamiento de todo lo explicado en el siguiente video https://youtu.be/gYk_VJU9qBc
 
 ### Estructura del repositorio ###
+
+<p> En este repositorio encontrarás los siguientes archivos:<br/></p>
++	_ pycache_: Carpeta donde se almacenan los datos cache de Python para mejorar su proceso de ejecución.
++   Datasets: carpeta donde se encuentran las fuentes de datos utilizadas.
++	Notebook: Carpeta que almacena los archivos para el ETL y el EDA.
++	src: carpeta que almacena imagenes que se encuentran en el repositorio.
++   .gitignore: archivo que indica lo que no debe ser rastreado por git
++	main.py: Archivo donde se almacenan las funciones que se ejecutarán en la API.
++	README.md: archivo con el readme del proyecto donde podras ver la presentacion del mismo.
++   requirements.txt: librerias requeridas para el deploy en Render
+Tabla de contenido
+
 
 ### Enlaces (resumen)
 +	Demo: https://youtu.be/gYk_VJU9qBc 
