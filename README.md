@@ -41,7 +41,14 @@ Puedes visualizar estas transformaciones en el siguiente archivo link</p>
 
 ### Análisis exploratorio de los datos. ###
 
+<p align="justify"> Antes de construir nuestro modelo, realizamos un Analisis Exploratorio de Datos (EDA). Este paso es crucial para entender la distribucion, tendencias y relaciones dentro de los datos. Este analisis ayudo a tomar decisiones informadas sobre como construir nuestro sistema de recmendacion. </p>
+
 ### Sistema de recomendación ###
+
+<p align="justify"> Se utilizaron tecnicas de aprendizaje automatico para sugerir peliculadas basadas en el contenido. El filtrado basado en contenido recomienda elementos similares a los que el usuario ha interactuado anteriormente, basandose en las caracteristicas de estos elementos.<br/>
+
+En este caso, el sistema recibe el titulo de una filmacion y utilizando K-Nearest Neighnors(KNN) encuentra los cinco elementos mas similares a ese titulo, recomendando los elementos mas populares entre esos vecinos. Por ello el dataframe que alimenta este modelo esta basado en las columnas de texto 'overview', 'title', 'genres', 'production_companies' en las que va a filtrar las coincidencias y tambien en la columna 'popularity' para poder ordenar segun la popularidad de las peliculas y recomendar las cinco mas populares.<br/>
+</p>
 
 ### API ###
 Se utilizó el framework FastAPI  para disponibilizar los datos de la empresa y se crearon las siguientes consultas:
