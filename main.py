@@ -2,6 +2,8 @@
 from fastapi import FastAPI
 import pandas as pd
 import re   
+from sklearn.neighbors import NearestNeighbors
+from sklearn.feature_extraction.text import TfidfVectorizer
 
 ''' 
 Instanciamos la clase
@@ -16,6 +18,7 @@ df_actores = pd.read_csv('./Datasets/actores.csv')
 df_directores = pd.read_csv('./Datasets/directores.csv')
 df_fecha_estreno = pd.read_csv('./Datasets/fecha_estreno.csv')
 df_score_votos = pd.read_csv('./Datasets/score_votos.csv')
+df_sistema_recomendacion = pd.read_parquet('./Datasets/df_modelo_clean.parquet', engine='pyarrow')
 
 ''' 
 Escribimos el decorador de path para cada funcion
@@ -259,3 +262,31 @@ def get_director( nombre_director: str ):
 
     # Convertir el diccionario de resultados a una lista y devolverla
     return list(resultados.values())
+
+@app.get("/F")
+def recomendacion( titulo:str, k=5 ):
+    # Limpieza y vectorización
+    tfidf = TfidfVectorizer(stop_words='english')
+    tfidf_matrix = tfidf.fit_transform(df_sistema_recomendacion['keys'])
+    
+    # Crear el modelo Nearest Neighbors y ajustarlo con la matriz TF-IDF
+    nn_model = NearestNeighbors(metric='cosine')
+    nn_model.fit(tfidf_matrix)
+    
+    # Transformar el título de la película en una matriz TF-IDF
+    title_tfidf = tfidf.transform([titulo])
+    
+    # Encontrar los índices y distancias de las películas más similares
+    _, indices = nn_model.kneighbors(title_tfidf, n_neighbors=k+1)
+    
+    # Obtener los índices de las películas (excluyendo la película de consulta)
+    movie_indices = indices.flatten()[1:]
+    
+    # Obtener los títulos de las películas recomendadas
+    recomendaciones_df = df_sistema_recomendacion.iloc[movie_indices][['title', 'popularity']]
+    
+    # Ordenar las recomendaciones por popularidad en orden descendente
+    recomendaciones_df_sorted = recomendaciones_df.sort_values(by='popularity', ascending=False)
+    
+    # Devolver solo los títulos de las películas recomendadas
+    return recomendaciones_df_sorted['title'].head(k).tolist()
