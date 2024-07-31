@@ -23,12 +23,20 @@ Los datos se pondrán a disposición de los usuarios para ser consumidos a trav�
 ***Este proyecto fue desarrollado durante la etapa de Labs del Bootcamp de Henry.*** 
 
 ### Herramientas utilizadas
+<style>
+  img {
+    max-height: 200px; /* Adjust the maximum height as needed */
+    width: auto; /* Maintain aspect ratio */
+  }
+</style>
 
-<p align="center"><img src='./src/img/imagen1 - copia.png'></p>
-<p align="center"><img src='./src/img/imagen2 - copia.png'></p>
-<p align="center"><img src='./src/img/imagen3 - copia.png'></p>
-<p align="center"><img src='./src/img/imagen4 - copia.png'></p>
-<p align="center"><img src='./src/img/imagen5 - copia.png'></p>
+<div style="display: flex;">
+  <img src="./src/img/imagen1 - copia.png">
+  <img src="./src/img/imagen2 - copia.png">
+  <img src="./src/img/imagen3 - copia.png">
+  <img src="./src/img/imagen4 - copia.png">
+  <img src="./src/img/imagen5 - copia.png">
+</div>
 
 ### Transformaciones
 
