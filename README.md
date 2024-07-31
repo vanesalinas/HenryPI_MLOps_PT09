@@ -25,7 +25,7 @@ Los datos se pondrán a disposición de los usuarios para ser consumidos a trav�
 ### Herramientas utilizadas
 <style>
   img {
-    max-height: 200px; /* Adjust the maximum height as needed */
+    max-height: 50px; /* Adjust the maximum height as needed */
     width: auto; /* Maintain aspect ratio */
   }
 </style>
