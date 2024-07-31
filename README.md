@@ -75,7 +75,8 @@ Resumen del funcionamiento de todo lo explicado en el siguiente video https://yo
 
 ### Estructura del repositorio ###
 
-<p> En este repositorio encontrarás los siguientes archivos:<br/></p>
+En este repositorio encontrarás los siguientes archivos:
+
 + _ pycache_: Carpeta donde se almacenan los datos cache de Python para mejorar su proceso de ejecución.
 + Datasets: carpeta donde se encuentran las fuentes de datos utilizadas.
 + Notebook: Carpeta que almacena los archivos para el ETL y el EDA.
@@ -84,7 +85,7 @@ Resumen del funcionamiento de todo lo explicado en el siguiente video https://yo
 + main.py: Archivo donde se almacenan las funciones que se ejecutarán en la API.
 + README.md: archivo con el readme del proyecto donde podras ver la presentacion del mismo.
 + requirements.txt: librerias requeridas para el deploy en Render
-</p>
+
 Tabla de contenido
 
 
