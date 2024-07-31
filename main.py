@@ -263,8 +263,10 @@ def get_director( nombre_director: str ):
     # Convertir el diccionario de resultados a una lista y devolverla
     return list(resultados.values())
 
-@app.get("/F")
-def recomendacion( titulo:str, k=5 ):
+@app.get("/G")
+def recomendacion( titulo:str ):
+    k=5
+    
     # Limpieza y vectorización
     tfidf = TfidfVectorizer(stop_words='english')
     tfidf_matrix = tfidf.fit_transform(df_sistema_recomendacion['keys'])
