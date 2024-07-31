@@ -23,14 +23,7 @@ Los datos se pondrán a disposición de los usuarios para ser consumidos a trav�
 ***Este proyecto fue desarrollado durante la etapa de Labs del Bootcamp de Henry.*** 
 
 ### Herramientas utilizadas
-<style>
-  img {
-    max-height: 50px; 
-    width: 50px; 
-  }
-</style>
-
-<div style="display: flex;">
+<div>
   <img src="./src/img/imagen1 - copia.png">
   <img src="./src/img/imagen2 - copia.png">
   <img src="./src/img/imagen3 - copia.png">
@@ -83,14 +76,16 @@ Resumen del funcionamiento de todo lo explicado en el siguiente video https://yo
 ### Estructura del repositorio ###
 
 <p> En este repositorio encontrarás los siguientes archivos:<br/></p>
+<p>
 +	_ pycache_: Carpeta donde se almacenan los datos cache de Python para mejorar su proceso de ejecución.
-+   Datasets: carpeta donde se encuentran las fuentes de datos utilizadas.
++ Datasets: carpeta donde se encuentran las fuentes de datos utilizadas.
 +	Notebook: Carpeta que almacena los archivos para el ETL y el EDA.
 +	src: carpeta que almacena imagenes que se encuentran en el repositorio.
-+   .gitignore: archivo que indica lo que no debe ser rastreado por git
++ .gitignore: archivo que indica lo que no debe ser rastreado por git
 +	main.py: Archivo donde se almacenan las funciones que se ejecutarán en la API.
 +	README.md: archivo con el readme del proyecto donde podras ver la presentacion del mismo.
-+   requirements.txt: librerias requeridas para el deploy en Render
++ requirements.txt: librerias requeridas para el deploy en Render
+</p>
 Tabla de contenido
 
 
