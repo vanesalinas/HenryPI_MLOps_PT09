@@ -24,6 +24,12 @@ Los datos se pondrán a disposición de los usuarios para ser consumidos a trav�
 
 ### Herramientas utilizadas
 
+<p align="center"><img src='./src/img/imagen1.png'></p>
+<p align="center"><img src='./src/img/imagen2.png'></p>
+<p align="center"><img src='./src/img/imagen3.png'></p>
+<p align="center"><img src='./src/img/imagen4.png'></p>
+<p align="center"><img src='./src/img/imagen5.png'></p>
+
 ### Transformaciones
 
 <p align="justify">Los datos iniciales presentan ciertas limitaciones por lo que se realizará un trabajo de Data Engineering para transformarlos y prepararlos adecuadamente.<br/> 
