@@ -54,15 +54,15 @@ Se utilizó el framework FastAPI  para disponibilizar los datos de la empresa y 
 +	def recomendacion( titulo ): Se ingresa el nombre de una película y te recomienda las similares en una lista de 5 valores.
 <p>Puedes visualizar el código en el siguiente archivo (link)<br/>
   
-Esta API será consumida en la web a través de un service web de Render. Puedes acceder desde aquí (link).</p>  
+Esta API será consumida en la web a través de un service web de Render. Puedes acceder desde aquí https://vanessasalinas-henrypi-mlops-pt09.onrender.com/docs </p>  
 
 ### Demo ###
-Resumen del funcionamiento de todo lo explicado en el siguiente video (link)
+Resumen del funcionamiento de todo lo explicado en el siguiente video https://youtu.be/gYk_VJU9qBc
 
 ### Estructura del repositorio ###
 
 ### Enlaces (resumen)
-+	Demo: (link)
++	Demo: https://youtu.be/gYk_VJU9qBc 
 +	API: https://vanessasalinas-henrypi-mlops-pt09.onrender.com/docs 
 +	Repositorio: https://github.com/vanesalinas/HenryPI_MLOps_PT09.git 
 +	Fuente de datos: https://drive.google.com/drive/folders/1wWCFOjhQ-nLi_FRQ_zBIlr9CM5gjelCq?usp=drive_link
