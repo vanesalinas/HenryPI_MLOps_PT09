@@ -18,7 +18,7 @@ df_actores = pd.read_csv('./Datasets/actores.csv')
 df_directores = pd.read_csv('./Datasets/directores.csv')
 df_fecha_estreno = pd.read_csv('./Datasets/fecha_estreno.csv')
 df_score_votos = pd.read_csv('./Datasets/score_votos.csv')
-df_sistema_recomendacion = pd.read_parquet('./Datasets/df_modelo_clean.parquet', engine='pyarrow')
+df_sistema_recomendacion = pd.read_csv('./Datasets/df_modelo_clean.csv', engine='pyarrow')
 
 ''' 
 Escribimos el decorador de path para cada funcion
