@@ -24,11 +24,11 @@ Los datos se pondrán a disposición de los usuarios para ser consumidos a trav�
 
 ### Herramientas utilizadas
 
-<p align="center"><img src='./src/img/imagen1.png'></p>
-<p align="center"><img src='./src/img/imagen2.png'></p>
-<p align="center"><img src='./src/img/imagen3.png'></p>
-<p align="center"><img src='./src/img/imagen4.png'></p>
-<p align="center"><img src='./src/img/imagen5.png'></p>
+<p align="center"><img src='./src/img/imagen1copia.png'></p>
+<p align="center"><img src='./src/img/imagen2copia.png'></p>
+<p align="center"><img src='./src/img/imagen3copia.png'></p>
+<p align="center"><img src='./src/img/imagen4copia.png'></p>
+<p align="center"><img src='./src/img/imagen5copia.png'></p>
 
 ### Transformaciones
 
